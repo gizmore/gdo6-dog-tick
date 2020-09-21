@@ -17,7 +17,7 @@ return array(
 'dog_help_tickstats' => 'Show statistics for the corona game.',
 'msg_dog_tickstats_total' => 'In this corona game, %s people have been infected. The best player, %s, has infected %s people.',
 'msg_dog_tickstats_top10' => '%s Corona players, page %s/%s: %s.',
-'msg_dog_tickstats_victims' => '%s Corona victims, page %s/%s: %s.',
+'msg_dog_tickstats_victims' => '%s latest Corona victims, page %s/%s: %s.',
     
 'dog_help_tickstats_user' => 'Show statistics for a user of the corona game.',
 'msg_dog_tickstats_user_nope' => '%s has not infected anyone and got ticked %s time(s). %s',

@@ -90,8 +90,7 @@ final class Stats extends DOG_Command
             $query = DOG_Tick::table()->
             select('tick_to, COUNT(*) count')->
             group('tick_to')->
-            orderDESC('count')->
-            orderASC('tick_at')->
+            orderDESC('tick_at')->
             limit($this->ipp, $start);
             $data = $query->exec()->fetchAllRows();
             $back = '';
@@ -99,7 +98,7 @@ final class Stats extends DOG_Command
             {
                 $user = DOG_User::findById($row[0]);
                 $rank = ++$start;
-                $back .= ", {$rank}-{$user->displayFullName()}({$row[1]})";
+                $back .= ", {$rank}-{$user->displayFullName()}";
             }
             $back = trim($back, ', ');
             
