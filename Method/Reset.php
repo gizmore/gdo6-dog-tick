@@ -4,8 +4,12 @@ namespace GDO\DogTick\Method;
 use GDO\Dog\DOG_Command;
 use GDO\Dog\DOG_Message;
 use GDO\DogTick\DOG_Tick;
-use GDO\Form\GDT_Confirmation;
+use GDO\UI\GDT_Confirm;
 
+/**
+ * Reset the game.
+ * @author gizmore
+ */
 final class Reset extends DOG_Command
 {
     public $priority = 100;
@@ -17,24 +21,14 @@ final class Reset extends DOG_Command
     public function gdoParameters()
     {
         return array(
-            GDT_Confirmation::make('confirm')->phrase(),
+            GDT_Confirm::make('confirm'),
         );
     }
     
-    public function dogExecute(DOG_Message $message)
+    public function dogExecute(DOG_Message $message, $confirmed)
     {
-        $user = $message->user;
-        if (!DOG_Tick::isInfected($user))
-        {
-            DOG_Tick::tick($user, $user);
-            $message->rply('msg_dog_tick_init_succeeded');
-        }
-        else
-        {
-            $message->rply('err_dog_tick_init_failed');
-        }
+        DOG_Tick::table()->truncate();
+        $message->rply('msg_tick_reset');
     }
     
-    
 }
-

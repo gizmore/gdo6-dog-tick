@@ -24,4 +24,7 @@ return array(
 'msg_dog_tickstats_user' => '%s has infected %s people and got ticked %s time(s). %s',
 'has_corona' => 'They have corona!',
 'no_corona' => 'They don\'t have corona.',
+    
+'dog_help_tick_reset' => 'Reset the game completely. All progress will be lost.',
+'msg_tick_reset' => 'The game has been reset.',
 );
