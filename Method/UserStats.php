@@ -16,7 +16,7 @@ final class UserStats extends DOG_Command
 {
     public $priority = 70;
     public $group = 'Corona';
-    public $trigger = 'tickstats_for';
+    public $trigger = 'stats';
     
     public function gdoParameters()
     {

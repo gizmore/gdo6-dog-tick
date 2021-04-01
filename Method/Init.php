@@ -10,7 +10,7 @@ final class Init extends DOG_Command
 {
     public $priority = 10;
     public $group = 'Corona';
-    public $trigger = 'tick_init';
+    public $trigger = 'init';
     
     public function getPermission() { return Dog::OWNER; }
     
