@@ -15,7 +15,7 @@ final class Tick extends DOG_Command
 {
     public $priority = 40;
     public $group = 'Corona';
-    public $trigger = 'tick';
+    public $trigger = 'Tick';
     
     public function gdoParameters()
     {
