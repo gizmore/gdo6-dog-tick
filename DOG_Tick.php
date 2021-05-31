@@ -94,7 +94,7 @@ final class DOG_Tick extends GDO
     {
         $row = self::table()->select('tick_by, COUNT(*) c')->
         group('tick_by')->
-        orderDESC('c')->
+        order('c DESC')->
         first()->exec()->fetchRow();
         return $row ? DOG_User::findById($row[0]) : null;
     }

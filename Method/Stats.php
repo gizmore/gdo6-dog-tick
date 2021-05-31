@@ -58,8 +58,8 @@ final class Stats extends DOG_Command
             $query = DOG_Tick::table()->
             select('tick_by, COUNT(*) count')->
             group('tick_by')->
-            orderDESC('count')->
-            orderASC('tick_at')->
+            order('count DESC')->
+            order('tick_at')->
             limit($this->ipp, $start);
             $data = $query->exec()->fetchAllRows();
             $back = '';
@@ -90,7 +90,7 @@ final class Stats extends DOG_Command
             $query = DOG_Tick::table()->
             select('tick_to, COUNT(*) count')->
             group('tick_to')->
-            orderDESC('tick_at')->
+            order('tick_at DESC')->
             limit($this->ipp, $start);
             $data = $query->exec()->fetchAllRows();
             $back = '';
