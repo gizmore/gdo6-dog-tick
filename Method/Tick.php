@@ -17,7 +17,7 @@ final class Tick extends DOG_Command
     public $group = 'Corona';
     public $trigger = 'Tick';
     
-    public function gdoParameters()
+    public function gdoParameters() : array
     {
         return array(
             GDT_DogUser::make('user')->online()->notNull(),

@@ -4,8 +4,8 @@ namespace GDO\DogTick\Method;
 use GDO\Dog\DOG_Command;
 use GDO\Dog\DOG_Message;
 use GDO\Dog\DOG_User;
-use GDO\DB\GDT_Enum;
-use GDO\DB\GDT_UInt;
+use GDO\Core\GDT_Enum;
+use GDO\Core\GDT_UInt;
 use GDO\DogTick\DOG_Tick;
 use GDO\Table\GDT_PageMenu;
 
@@ -21,7 +21,7 @@ final class Stats extends DOG_Command
     
     public $ipp = 10;
     
-    public function gdoParameters()
+    public function gdoParameters() : array
     {
         return array(
             GDT_Enum::make('section')->enumValues('total', 'top10', 'victims')->notNull(),

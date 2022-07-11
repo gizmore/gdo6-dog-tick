@@ -18,7 +18,7 @@ final class UserStats extends DOG_Command
     public $group = 'Corona';
     public $trigger = 'stats';
     
-    public function gdoParameters()
+    public function gdoParameters() : array
     {
         return array(
             GDT_DogUser::make('user')->thyself(),

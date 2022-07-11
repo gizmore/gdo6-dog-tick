@@ -12,7 +12,7 @@ final class Init extends DOG_Command
     public $group = 'Corona';
     public $trigger = 'init';
     
-    public function getPermission() { return Dog::OWNER; }
+    public function getPermission() : ?string { return Dog::OWNER; }
     
     public function dogExecute(DOG_Message $message)
     {

@@ -16,9 +16,9 @@ final class Reset extends DOG_Command
     public $group = 'Corona';
     public $trigger = 'tick_reset';
     
-    public function getPermission() { return 'admin'; }
+    public function getPermission() : ?string { return 'admin'; }
     
-    public function gdoParameters()
+    public function gdoParameters() : array
     {
         return array(
             GDT_Confirm::make('confirm'),

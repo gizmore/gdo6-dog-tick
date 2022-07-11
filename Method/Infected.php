@@ -17,7 +17,7 @@ final class Infected extends DOG_Command
     public $group = 'Corona';
     public $trigger = 'ticked';
     
-    public function gdoParameters()
+    public function gdoParameters() : array
     {
         return array(
             GDT_DogUser::make('user')->thyself(),

@@ -2,10 +2,10 @@
 namespace GDO\DogTick;
 
 use GDO\Core\GDO;
-use GDO\DB\GDT_AutoInc;
+use GDO\Core\GDT_AutoInc;
 use GDO\Date\Time;
 use GDO\Dog\GDT_DogUser;
-use GDO\DB\GDT_CreatedAt;
+use GDO\Core\GDT_CreatedAt;
 use GDO\Dog\DOG_User;
 
 /**
@@ -18,9 +18,9 @@ final class DOG_Tick extends GDO
     ###########
     ### GDO ###
     ###########
-    public function gdoCached() { return false; }
+    public function gdoCached() : bool { return false; }
     
-    public function gdoColumns()
+    public function gdoColumns() : array
     {
         return array(
             GDT_AutoInc::make('tick_id'),
@@ -37,16 +37,16 @@ final class DOG_Tick extends GDO
      * @return DOG_User
      */
     public function getTicker() { return $this->getValue('tick_by'); }
-    public function getTickerID() { return $this->getVar('tick_by'); }
+    public function getTickerID() { return $this->gdoVar('tick_by'); }
 
     /**
      * @return DOG_User
      */
     public function getVictim() { return $this->getValue('tick_to'); }
-    public function getVictimID() { return $this->getVar('tick_to'); }
+    public function getVictimID() { return $this->gdoVar('tick_to'); }
     
-    public function getTickDate() { return $this->getVar('tick_at'); }
-    public function displayDate() { return Time::displayDate($this->getVar('tick_at')); }
+    public function getTickDate() { return $this->gdoVar('tick_at'); }
+    public function displayDate() { return Time::displayDate($this->gdoVar('tick_at')); }
     
     ##############
     ### Static ###

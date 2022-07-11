@@ -11,11 +11,11 @@ use GDO\Core\GDO_Module;
  */
 final class Module_DogTick extends GDO_Module
 {
-    public function onLoadLanguage() { return $this->loadLanguage('lang/tick'); }
+    public function onLoadLanguage() : void { $this->loadLanguage('lang/tick'); }
     
-    public function getDependencies() { return ['Dog', 'DogIRC']; }
+    public function getDependencies() : array { return ['Dog', 'DogIRC']; }
     
-    public function getClasses()
+    public function getClasses() : array
     {
         return [
             DOG_Tick::class,
