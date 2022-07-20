@@ -36,13 +36,13 @@ final class DOG_Tick extends GDO
     /**
      * @return DOG_User
      */
-    public function getTicker() { return $this->getValue('tick_by'); }
+    public function getTicker() { return $this->gdoValue('tick_by'); }
     public function getTickerID() { return $this->gdoVar('tick_by'); }
 
     /**
      * @return DOG_User
      */
-    public function getVictim() { return $this->getValue('tick_to'); }
+    public function getVictim() { return $this->gdoValue('tick_to'); }
     public function getVictimID() { return $this->gdoVar('tick_to'); }
     
     public function getTickDate() { return $this->gdoVar('tick_at'); }
