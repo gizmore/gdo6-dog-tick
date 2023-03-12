@@ -8,27 +8,35 @@ use GDO\UI\GDT_Confirm;
 
 /**
  * Reset the game.
+ *
  * @author gizmore
  */
 final class Reset extends DOG_Command
 {
-    public $priority = 100;
-    public $group = 'Corona';
-    public $trigger = 'tick_reset';
-    
-    public function getPermission() : ?string { return 'admin'; }
-    
-    public function gdoParameters() : array
-    {
-        return array(
-            GDT_Confirm::make('confirm'),
-        );
-    }
-    
-    public function dogExecute(DOG_Message $message, $confirmed)
-    {
-        DOG_Tick::table()->truncate();
-        $message->rply('msg_tick_reset');
-    }
-    
+
+	public $priority = 100;
+
+	public function getCLITrigger()
+	{
+		return 'corona.tick_reset';
+	}
+
+	public function getPermission(): ?string
+	{
+		return 'admin';
+	}
+
+	public function gdoParameters(): array
+	{
+		return array(
+			GDT_Confirm::make('confirm'),
+		);
+	}
+
+	public function dogExecute(DOG_Message $message, $confirmed)
+	{
+		DOG_Tick::table()->truncate();
+		$message->rply('msg_tick_reset');
+	}
+
 }

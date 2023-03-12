@@ -13,9 +13,11 @@ use GDO\DogTick\DOG_Tick;
  */
 final class Infected extends DOG_Command
 {
-    public $priority = 50;
-    public $group = 'Corona';
-    public $trigger = 'ticked';
+    
+    public function getCLITrigger()
+    {
+    	return 'corona.ticked';
+    }
     
     public function gdoParameters() : array
     {
