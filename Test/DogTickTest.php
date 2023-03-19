@@ -16,19 +16,19 @@ final class DogTickTest extends IRCTestCase
         $this->room = $this->getDogRoom();
         $this->ticked = $this->createUser('Ticked');
         $this->user($this->userGizmore2());
-        $this->ircPrivmsgRoom('corona.init.');
+        $this->ircPrivmsgRoom('corona.init');
         assertTrue(DOG_Tick::isInfected($this->doguser), 'Check if first infection works.');
     }
     
     public function testTick()
     {
-        $response = $this->ircPrivmsgRoom('corona.tick Tick');
+        $response = $this->ircPrivmsgRoom('corona.tick Ticked');
         assertTrue(strpos($response, 'You ticked Τicked') !== false, 'Test if tick was succesful');
     }
     
     public function testScore()
     {
-        $response = $this->ircPrivmsgRoom('corona.stats.');
+        $response = $this->ircPrivmsgRoom('corona.stats');
         assertTrue(strpos($response, 'ticked 1 time') !== false, 'Test if tickstats do work');
         assertTrue(strpos($response, 'infected 2') !== false, 'Test if tickstats do work correctly');
     }
