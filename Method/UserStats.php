@@ -11,7 +11,7 @@ use GDO\DogTick\DOG_Tick;
  * Show stats for a user.
  *
  * @author gizmore
- *        
+ *
  */
 final class UserStats extends DOG_Command
 {
@@ -20,14 +20,14 @@ final class UserStats extends DOG_Command
 
 	public function getCLITrigger()
 	{
-		return 'corona.stats';
+		return 'cc.user';
 	}
 
 	public function gdoParameters(): array
 	{
-		return array(
+		return [
 			GDT_DogUser::make('user')->thyself(),
-		);
+		];
 	}
 
 	public function dogExecute(DOG_Message $message, DOG_User $user = null)
@@ -43,7 +43,7 @@ final class UserStats extends DOG_Command
 			return $message->rply('msg_dog_tickstats_user_nope', [
 				$user->displayFullName(),
 				$numTicked,
-				$infected
+				$infected,
 			]);
 		}
 		else
@@ -52,7 +52,7 @@ final class UserStats extends DOG_Command
 				$user->displayFullName(),
 				$numTicks,
 				$numTicked,
-				$infected
+				$infected,
 			]);
 		}
 	}

@@ -1,9 +1,9 @@
 <?php
 namespace GDO\DogTick\Method;
 
+use GDO\Dog\Dog;
 use GDO\Dog\DOG_Command;
 use GDO\Dog\DOG_Message;
-use GDO\Dog\Dog;
 use GDO\DogTick\DOG_Tick;
 
 final class Init extends DOG_Command
@@ -13,7 +13,7 @@ final class Init extends DOG_Command
 
 	public function getCLITrigger()
 	{
-		return 'corona.init';
+		return 'cc.init';
 	}
 
 	public function getPermission(): ?string
@@ -24,7 +24,7 @@ final class Init extends DOG_Command
 	public function dogExecute(DOG_Message $message)
 	{
 		$user = $message->user;
-		if ( !DOG_Tick::isInfected($user))
+		if (!DOG_Tick::isInfected($user))
 		{
 			DOG_Tick::tick($user, $user);
 			$message->rply('msg_dog_tick_init_succeeded');
@@ -36,4 +36,3 @@ final class Init extends DOG_Command
 	}
 
 }
-

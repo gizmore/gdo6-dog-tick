@@ -18,7 +18,7 @@ final class Reset extends DOG_Command
 
 	public function getCLITrigger()
 	{
-		return 'corona.tick_reset';
+		return 'cc.reset';
 	}
 
 	public function getPermission(): ?string
@@ -28,9 +28,9 @@ final class Reset extends DOG_Command
 
 	public function gdoParameters(): array
 	{
-		return array(
+		return [
 			GDT_Confirm::make('confirm'),
-		);
+		];
 	}
 
 	public function dogExecute(DOG_Message $message, $confirmed)

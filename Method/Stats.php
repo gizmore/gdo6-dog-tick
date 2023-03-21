@@ -1,11 +1,11 @@
 <?php
 namespace GDO\DogTick\Method;
 
+use GDO\Core\GDT_Enum;
+use GDO\Core\GDT_UInt;
 use GDO\Dog\DOG_Command;
 use GDO\Dog\DOG_Message;
 use GDO\Dog\DOG_User;
-use GDO\Core\GDT_Enum;
-use GDO\Core\GDT_UInt;
 use GDO\DogTick\DOG_Tick;
 use GDO\Table\GDT_PageMenu;
 
@@ -23,15 +23,15 @@ final class Stats extends DOG_Command
 
 	public function getCLITrigger()
 	{
-		return 'corona.tickstats';
+		return 'cc.stats';
 	}
 
 	public function gdoParameters(): array
 	{
-		return array(
+		return [
 			GDT_Enum::make('section')->enumValues('total', 'top10', 'victims')->notNull(),
 			GDT_UInt::make('page')->min(1)->initial('1'),
-		);
+		];
 	}
 
 	public function dogExecute(DOG_Message $message, $section, $page)
@@ -39,7 +39,7 @@ final class Stats extends DOG_Command
 		if ($section === 'total')
 		{
 			$bestPlayer = DOG_Tick::bestPlayer();
-			if ( !$bestPlayer)
+			if (!$bestPlayer)
 			{
 				return $message->rply('err_no_data');
 			}
@@ -47,7 +47,7 @@ final class Stats extends DOG_Command
 				[
 					DOG_Tick::totalVictims(),
 					$bestPlayer->displayFullName(),
-					DOG_Tick::numTicks($bestPlayer)
+					DOG_Tick::numTicks($bestPlayer),
 				]);
 		}
 		elseif ($section === 'top10')
@@ -63,7 +63,7 @@ final class Stats extends DOG_Command
 			if ($page > $nPages)
 			{
 				return $message->rply('err_page', [
-					$nPages
+					$nPages,
 				]);
 			}
 
@@ -87,7 +87,7 @@ final class Stats extends DOG_Command
 				$nItems,
 				$page,
 				$nPages,
-				$back
+				$back,
 			]);
 		}
 		elseif ($section === 'victims')
@@ -103,7 +103,7 @@ final class Stats extends DOG_Command
 			if ($page > $nPages)
 			{
 				return $message->rply('err_page', [
-					$nPages
+					$nPages,
 				]);
 			}
 
@@ -126,10 +126,9 @@ final class Stats extends DOG_Command
 				$nItems,
 				$page,
 				$nPages,
-				$back
+				$back,
 			]);
 		}
 	}
 
 }
-
