@@ -21,7 +21,7 @@ final class Stats extends DOG_Command
 
 	public $ipp = 10;
 
-	public function getCLITrigger()
+	public function getCLITrigger(): string
 	{
 		return 'cc.stats';
 	}

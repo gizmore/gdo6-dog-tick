@@ -17,7 +17,7 @@ final class Tick extends DOG_Command
 
 	public $priority = 40;
 
-	public function getCLITrigger()
+	public function getCLITrigger(): string
 	{
 		return 'cc.tick';
 	}
@@ -36,7 +36,7 @@ final class Tick extends DOG_Command
 			$message->rply('err_dog_no_disease');
 		}
 
-		elseif ($tick = DOG_Tick::tickFor($user))
+		elseif ($tick = DOG_Tick::tickFor($user, $message->user))
 		{
 			$message->rply('err_dog_already_ticked',
 				[

@@ -15,7 +15,7 @@ use GDO\DogTick\DOG_Tick;
 final class Infected extends DOG_Command
 {
 
-	public function getCLITrigger()
+	public function getCLITrigger(): string
 	{
 		return 'cc.ticked';
 	}

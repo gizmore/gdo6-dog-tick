@@ -11,7 +11,7 @@ final class Init extends DOG_Command
 
 	public $priority = 10;
 
-	public function getCLITrigger()
+	public function getCLITrigger(): string
 	{
 		return 'cc.init';
 	}

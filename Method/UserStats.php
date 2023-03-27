@@ -18,7 +18,7 @@ final class UserStats extends DOG_Command
 
 	public $priority = 70;
 
-	public function getCLITrigger()
+	public function getCLITrigger(): string
 	{
 		return 'cc.user';
 	}

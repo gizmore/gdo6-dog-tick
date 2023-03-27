@@ -16,7 +16,7 @@ final class Reset extends DOG_Command
 
 	public $priority = 100;
 
-	public function getCLITrigger()
+	public function getCLITrigger(): string
 	{
 		return 'cc.reset';
 	}
