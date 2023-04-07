@@ -18,7 +18,7 @@ final class Init extends DOG_Command
 
 	public function getPermission(): ?string
 	{
-		return Dog::OWNER;
+		return Dog::ADMIN;
 	}
 
 	public function dogExecute(DOG_Message $message)
