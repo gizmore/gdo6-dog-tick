@@ -9,7 +9,7 @@ use GDO\DogTick\DOG_Tick;
 final class Init extends DOG_Command
 {
 
-	public $priority = 10;
+	public int $priority = 10;
 
 	public function getCLITrigger(): string
 	{

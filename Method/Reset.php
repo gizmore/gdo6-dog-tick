@@ -14,7 +14,7 @@ use GDO\UI\GDT_Confirm;
 final class Reset extends DOG_Command
 {
 
-	public $priority = 100;
+	public int $priority = 100;
 
 	public function getCLITrigger(): string
 	{

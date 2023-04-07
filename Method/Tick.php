@@ -15,7 +15,7 @@ use GDO\DogTick\DOG_Tick;
 final class Tick extends DOG_Command
 {
 
-	public $priority = 40;
+	public int $priority = 40;
 
 	public function getCLITrigger(): string
 	{

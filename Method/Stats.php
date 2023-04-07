@@ -17,7 +17,7 @@ use GDO\Table\GDT_PageMenu;
 final class Stats extends DOG_Command
 {
 
-	public $priority = 60;
+	public int $priority = 60;
 
 	public $ipp = 10;
 
