@@ -34,7 +34,7 @@ final class UserStats extends DOG_Command
 	{
 		$user = $user === null ? $message->user : $user;
 
-		$infected = DOG_Tick::isInfected($user) ? $message->t('has_corona') : $message->t('no_corona');
+		$infected = DOG_Tick::isInfected($user) ? $message->t('has_corona', [DOG_Tick::displayVariantsFor($user)]) : $message->t('no_corona');
 		$numTicks = DOG_Tick::numTicks($user);
 		$numTicked = DOG_Tick::numTicked($user);
 

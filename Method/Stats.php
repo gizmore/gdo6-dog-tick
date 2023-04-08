@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace GDO\DogTick\Method;
 
 use GDO\Core\GDT_Enum;
@@ -19,7 +20,7 @@ final class Stats extends DOG_Command
 
 	public int $priority = 60;
 
-	public $ipp = 10;
+	public int $ipp = 10;
 
 	public function getCLITrigger(): string
 	{
@@ -29,12 +30,12 @@ final class Stats extends DOG_Command
 	public function gdoParameters(): array
 	{
 		return [
-			GDT_Enum::make('section')->enumValues('total', 'top10', 'victims')->notNull(),
+			GDT_Enum::make('section')->enumValues('total', 'top10', 'victims')->notNull()->initial('total'),
 			GDT_UInt::make('page')->min(1)->initial('1'),
 		];
 	}
 
-	public function dogExecute(DOG_Message $message, $section, $page)
+	public function dogExecute(DOG_Message $message, string $section, int $page): bool
 	{
 		if ($section === 'total')
 		{
@@ -59,7 +60,7 @@ final class Stats extends DOG_Command
 			{
 				return $message->rply('err_no_data');
 			}
-			$nPages = GDT_PageMenu::getPageCountS($nItems, $this->ipp);
+			$nPages = GDT_PageMenu::getPageCountS((int)$nItems, $this->ipp);
 			if ($page > $nPages)
 			{
 				return $message->rply('err_page', [
@@ -83,7 +84,7 @@ final class Stats extends DOG_Command
 			}
 			$back = trim($back, ', ');
 
-			$message->rply('msg_dog_tickstats_top10', [
+			return $message->rply('msg_dog_tickstats_top10', [
 				$nItems,
 				$page,
 				$nPages,
@@ -99,7 +100,7 @@ final class Stats extends DOG_Command
 			{
 				return $message->rply('err_no_data');
 			}
-			$nPages = GDT_PageMenu::getPageCountS($nItems, $this->ipp);
+			$nPages = GDT_PageMenu::getPageCountS((int)$nItems, $this->ipp);
 			if ($page > $nPages)
 			{
 				return $message->rply('err_page', [
@@ -122,13 +123,15 @@ final class Stats extends DOG_Command
 			}
 			$back = trim($back, ', ');
 
-			$message->rply('msg_dog_tickstats_victims', [
+			return $message->rply('msg_dog_tickstats_victims', [
 				$nItems,
 				$page,
 				$nPages,
 				$back,
 			]);
 		}
+
+		return false;
 	}
 
 }

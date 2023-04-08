@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 namespace GDO\DogTick;
 
 use GDO\Core\Event\Entry;
@@ -14,7 +15,7 @@ use GDO\Util\FileUtil;
 /**
  * A corona game. Tick others to infect them. Only works if you are yourself infected.
  *
- * @version 6.10.1
+ * @version 7.0.3
  * @since 6.10.0
  * @author gizmore
  */
@@ -27,7 +28,6 @@ final class Module_DogTick extends GDO_Module
 	{
 		return [
 			'Country',
-			'Dog',
 			'DogIRC',
 		];
 	}
@@ -42,8 +42,8 @@ final class Module_DogTick extends GDO_Module
 	public function getConfig(): array
 	{
 		return [
-			GDT_UInt::make('tick_min_score')->notNull()->initial('1'),
-			GDT_UInt::make('tick_max_score')->notNull()->initial('4'),
+			GDT_UInt::make('tick_min_score')->notNull()->initial('2'),
+			GDT_UInt::make('tick_max_score')->notNull()->initial('10'),
 			GDT_Float::make('tick_mutations')->notNull()->initial('0.25'),
 			GDT_Duration::make('tick_infect_timer')->notNull()->initial('1h'),
 		];
@@ -58,11 +58,25 @@ final class Module_DogTick extends GDO_Module
 
 	public function coronaConfig(): array
 	{
-		if (FileUtil::isFile($this->filePath('config.php')))
+		static $config;
+		if (!$config)
 		{
-			return require $this->filePath('config.php');
+			if (FileUtil::isFile($this->filePath('config.php')))
+			{
+				$config = require $this->filePath('config.php');
+			}
+			else
+			{
+				$config = require $this->filePath('config.example.php');
+			}
 		}
-		return require $this->filePath('config.example.php');
+		return $config;
+	}
+
+	public function coronaConfigVariant(string $name): array
+	{
+		$conf = $this->coronaConfig();
+		return $conf[$name];
 	}
 
 	public function onModuleInit(): void

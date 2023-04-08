@@ -21,6 +21,11 @@ final class Init extends DOG_Command
 		return Dog::ADMIN;
 	}
 
+	public function getMethodTitle(): string
+	{
+		return t('dog_help_tick_init');
+	}
+
 	public function dogExecute(DOG_Message $message)
 	{
 		$user = $message->user;

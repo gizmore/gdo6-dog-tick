@@ -1,18 +1,20 @@
 <?php
+declare(strict_types=1);
 namespace GDO\DogTick\Test;
 
 use GDO\Dog\DOG_Room;
-use GDO\DogIRC\IRCTestCase;
+use GDO\Dog\DOG_User;
+use GDO\DogIRC\Test\IRCTestCase;
 use GDO\DogTick\DOG_Tick;
-use GDO\User\GDO_User;
-use function PHPUnit\Framework\assertMatchesRegularExpression;
+use function PHPUnit\Framework\assertStringContainsString;
 use function PHPUnit\Framework\assertTrue;
 
 final class DogTickTest extends IRCTestCase
 {
 
-	private GDO_User $ticked;
-	private DOG_Room $room;
+	private DOG_User $ticked;
+
+	private ?DOG_Room $room;
 
 	public function testInit()
 	{
@@ -26,20 +28,20 @@ final class DogTickTest extends IRCTestCase
 	public function testTick()
 	{
 		$response = $this->ircPrivmsgRoom('cc.tick Ticked');
-		assertTrue(strpos($response, 'You ticked Τicked') !== false, 'Test if tick was succesful');
+		assertStringContainsString('You ticked Τicked', $response, 'Test if tick was succesful');
 	}
 
 	public function testScore(): void
 	{
 		$response = $this->ircPrivmsgRoom('cc.stats');
-		assertTrue(strpos($response, 'ticked 1 time') !== false, 'Test if tickstats do work');
-		assertTrue(strpos($response, 'infected 2') !== false, 'Test if tickstats do work correctly');
+		assertTrue(str_contains($response, '2 people'), 'Test if tickstats do work');
+		assertTrue(str_contains($response, 'infected 2'), 'Test if tickstats do work correctly');
 	}
 
 	public function testUserScore(): void
 	{
 		$r = $this->ircPrivmsgRoom('cc.user');
-		self::assertStringContainsString('infected 1 ', $r);
+		self::assertStringContainsString('infected 2', $r);
 	}
 
 }
