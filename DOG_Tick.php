@@ -86,7 +86,7 @@ final class DOG_Tick extends GDO
 
 	public static function totalVictims(): int
 	{
-		return (int) self::table()->select('COUNT(distinct(tick_to))')->exec()->fetchValue();
+		return (int) self::table()->select('COUNT(distinct(tick_to))')->exec()->fetchVar();
 	}
 
 	public static function bestPlayers(int $page=1): array

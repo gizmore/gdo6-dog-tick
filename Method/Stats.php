@@ -55,7 +55,7 @@ final class Stats extends DOG_Command
 		{
 			$nItems = DOG_Tick::table()->select('COUNT(DISTINCT(tick_by))')
 				->exec()
-				->fetchValue();
+				->fetchVar();
 			if ($nItems == 0)
 			{
 				return $message->rply('err_no_data');
@@ -95,7 +95,7 @@ final class Stats extends DOG_Command
 		{
 			$nItems = DOG_Tick::table()->select('COUNT(DISTINCT(tick_to))')
 				->exec()
-				->fetchValue();
+				->fetchVar();
 			if ($nItems == 0)
 			{
 				return $message->rply('err_no_data');
