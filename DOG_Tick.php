@@ -134,11 +134,12 @@ final class DOG_Tick extends GDO
 		return Arrays::implodeHuman($variants);
 	}
 
-	public static function bestPlayer(): DOG_User
+	public static function bestPlayer(): ?DOG_User
 	{
-		return self::table()->select('dog_tick.*, SUM(tick_score) AS lvl')->group('tick_by')->
+		$tick = self::table()->select('dog_tick.*, SUM(tick_score) AS lvl')->group('tick_by')->
 		order('lvl')->
-		exec()->fetchObject()->getTicker();
+		exec()->fetchObject();
+        return $tick?->getTicker();
 
 	}
 
