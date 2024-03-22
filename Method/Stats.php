@@ -2,7 +2,9 @@
 declare(strict_types=1);
 namespace GDO\DogTick\Method;
 
+use GDO\Core\GDT;
 use GDO\Core\GDT_Enum;
+use GDO\Core\GDT_Response;
 use GDO\Core\GDT_UInt;
 use GDO\Dog\DOG_Command;
 use GDO\Dog\DOG_Message;
@@ -35,7 +37,7 @@ final class Stats extends DOG_Command
 		];
 	}
 
-	public function dogExecute(DOG_Message $message, string $section, int $page): bool
+	public function dogExecute(DOG_Message $message, string $section, int $page): GDT
 	{
 		if ($section === 'total')
 		{
@@ -131,7 +133,7 @@ final class Stats extends DOG_Command
 			]);
 		}
 
-		return false;
+		return GDT_Response::make();
 	}
 
 }
